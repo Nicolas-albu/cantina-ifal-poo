@@ -1,30 +1,32 @@
+/*
+ * This Java source file contains the class that makes database connections.
+ */
 package com.ifal.cantina.utils;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Connection;
 
 /**
  * Factory the connection to database.
- *
- * @author Nicolas
+ * 
+ * @author Nicolas Albuquerque R.
  */
 public class ConnectionFactory {
+    
     /**
-     *
      * @return return the database connection.
      */
-    public static Connection create() {
+    public static Connection createConnection() {
         Connection connection = null;
 
         try {
             connection = DriverManager.getConnection(
-                    ConfigDatas.getUrlDatabase(),
-                    ConfigDatas.getDbUser(),
-                    ConfigDatas.getDbPassword());
+                ReadProperties.getUrlConnection(),
+                ReadProperties.getProperty("db.username"),
+                ReadProperties.getProperty("db.password"));
         } catch (SQLException error) {
-            System.err.println("Ocorreu um erro: ");
-            error.printStackTrace();
+            System.err.format("Ocorreu um erro: %s\n", error.getMessage());
         }
 
         return connection;

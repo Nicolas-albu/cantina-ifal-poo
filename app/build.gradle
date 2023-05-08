@@ -7,6 +7,8 @@
  */
 
 plugins {
+    id 'java'
+
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
 }
@@ -26,8 +28,11 @@ dependencies {
     // https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
     implementation 'com.mysql:mysql-connector-j:8.0.33'
 
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+
     // https://mvnrepository.com/artifact/io.github.cdimascio/dotenv-java
     // implementation 'io.github.cdimascio:dotenv-java:3.0.0'
+    // implementation 'org.apache.commons:commons-lang3:3.0'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -40,4 +45,8 @@ java {
 application {
     // Define the main class for the application.
     mainClass = 'com.ifal.cantina.App'
+}
+
+run {
+    standardInput = System.in
 }

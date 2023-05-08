@@ -2,14 +2,12 @@ package com.ifal.cantina.model;
 
 import java.sql.Connection;
 
-public class Model {
+import com.ifal.cantina.interfaces.IModel;
+
+public class Model implements IModel {
     private Connection connection = null;
 
-    public Model(String urlConnection, String user, String password) {
-
-    }
-
-    public void setConnection(Connection connection) {
+    public Model(Connection connection) {
         this.connection = connection;
     }
 }
