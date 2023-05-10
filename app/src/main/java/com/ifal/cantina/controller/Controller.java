@@ -1,41 +1,25 @@
 package com.ifal.cantina.controller;
 
-import com.ifal.cantina.entities.Product;
-import com.ifal.cantina.interfaces.IController;
-import com.ifal.cantina.interfaces.IModel;
-import com.ifal.cantina.interfaces.IView;
+import com.ifal.cantina.interfaces.AController;
+import com.ifal.cantina.interfaces.AModel;
+import com.ifal.cantina.interfaces.AView;
 
-public class Controller implements IController {
-    private IModel model;
-    private IView view;
+public class Controller extends AController {
 
-    public Controller(IModel model, IView view) {
-        this.model = model;
-        this.view = view;
+    public Controller(AModel model, AView view) {
+        super(model, view);
     }
 
+    @Override
     public void run() {
-        // Show Menu
-        int resultShowMenu = this.view.show();
-        this.logicMenu(resultShowMenu);
-    }
-
-    private void logicMenu(int resultShow) {
-        switch (resultShow) {
-            case -1:
+        int resultShowMenu = (Integer) super.view.show();
+        
+        switch (resultShowMenu) {
+            case 9:
                 break;
             case 1:
-                Product product = this.view.showRegisterItem();
-                int resultRegisterItem = this.registerItem(product);
+                new RegisterItemController(super.model, super.view).run();
                 break;
         }
-    }
-
-    private int registerItem(Product product) {
-        if (product instanceof Product) {
-            System.out.println("Concluido.");
-            // return this.model.registerItem(product);
-        }
-        return 0;
     }
 }
