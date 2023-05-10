@@ -1,13 +1,15 @@
 package com.ifal.cantina.model;
 
-import java.sql.Connection;
+import com.ifal.cantina.interfaces.AModel;
 
-import com.ifal.cantina.interfaces.IModel;
+public class Model extends AModel {
 
-public class Model implements IModel {
-    private Connection connection = null;
+    public Model() {
+        super();
+    }
 
-    public Model(Connection connection) {
-        this.connection = connection;
+    @Override
+    public Object add(Object object) {
+        return null;
     }
 }
