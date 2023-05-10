@@ -4,11 +4,8 @@
 package com.ifal.cantina.utils;
 
 import java.util.Properties;
-import java.sql.Connection;
 import java.io.InputStream;
 import java.io.IOException;
-
-import com.ifal.cantina.model.Model;
 
 /**
  * Reading the application settings file.
