@@ -32,6 +32,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_cantina`.`TBL_PRODUTO` (
   `cod_prod` INT NOT NULL AUTO_INCREMENT,
+  `nom_prod` VARCHAR(200) NOT NULL,
   `des_prod` VARCHAR(300) NULL,
   `val_preco_uni` DECIMAL(7,2) NOT NULL,
   `qtd_prod` INT NOT NULL,

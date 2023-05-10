@@ -1,11 +1,24 @@
 package com.ifal.cantina.entities;
 
+import com.ifal.cantina.annotations.Field;
+import com.ifal.cantina.annotations.Table;
+
+@Table(tableName = "TBL_PRODUTO")
 public class Product {
-    int code_product;
-    String name_product;
-    double price_product;
-    int quantity_product;
-    String description_product;
+    @Field(fieldName = "cod_prod")
+    private int code_product;
+
+    @Field(fieldName = "nom_prod")
+    private String name_product;
+
+    @Field(fieldName = "val_preco_uni")
+    private double price_product;
+
+    @Field(fieldName = "qtd_prod")
+    private int quantity_product;
+
+    @Field(fieldName = "des_prod")
+    private String description_product;
 
     public Product ( 
         String name_product, 
@@ -19,11 +32,11 @@ public class Product {
     }
 
     public int getCode_product() {
-        return code_product;
+        return this.code_product;
     }
 
     public String getName_product() {
-        return name_product;
+        return this.name_product;
     }
 
     public void setName_product(String name_product) {
@@ -31,7 +44,7 @@ public class Product {
     }
 
     public double getPrice_product() {
-        return price_product;
+        return this.price_product;
     }
 
     public void setPrice_product(double price_product) {
@@ -39,7 +52,7 @@ public class Product {
     }
 
     public int getQuantity_product() {
-        return quantity_product;
+        return this.quantity_product;
     }
 
     public void setQuantity_product(int quantity_product) {
@@ -47,7 +60,7 @@ public class Product {
     }
 
     public String getDescription_product() {
-        return description_product;
+        return this.description_product;
     }
 
     public void setDescription_product(String description_product) {
