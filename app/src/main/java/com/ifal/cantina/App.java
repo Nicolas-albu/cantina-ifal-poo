@@ -3,12 +3,10 @@
  */
 package com.ifal.cantina;
 
-import com.ifal.cantina.utils.ConnectionFactory;
 import com.ifal.cantina.controller.Controller;
-import com.ifal.cantina.interfaces.IModel;
-import com.ifal.cantina.interfaces.IView;
 import com.ifal.cantina.model.Model;
 import com.ifal.cantina.view.View;
+import com.ifal.cantina.interfaces.*;
 
 /**
  * Application initializer class.
@@ -23,9 +21,9 @@ public class App {
      * @param args command line arguments.
      */
     public static void main(String[] args) {
-        IModel model = new Model(ConnectionFactory.createConnection());
-        IView view = new View();
-        Controller controller = new Controller(model, view);
+        AModel model = new Model();
+        AView view = new View();
+        AController controller = new Controller(model, view);
         
         controller.run();
     }
