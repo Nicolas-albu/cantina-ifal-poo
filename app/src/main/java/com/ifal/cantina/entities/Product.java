@@ -1,23 +1,23 @@
 package com.ifal.cantina.entities;
 
-import com.ifal.cantina.annotations.Field;
+import com.ifal.cantina.annotations.DBField;
 import com.ifal.cantina.annotations.Table;
 
 @Table(tableName = "TBL_PRODUTO")
 public class Product {
-    @Field(fieldName = "cod_prod")
+    @DBField(fieldName = "cod_prod")
     private int code_product;
 
-    @Field(fieldName = "nom_prod")
+    @DBField(fieldName = "nom_prod")
     private String name_product;
 
-    @Field(fieldName = "val_preco_uni")
+    @DBField(fieldName = "val_preco_uni")
     private double price_product;
 
-    @Field(fieldName = "qtd_prod")
+    @DBField(fieldName = "qtd_prod")
     private int quantity_product;
 
-    @Field(fieldName = "des_prod")
+    @DBField(fieldName = "des_prod")
     private String description_product;
 
     public Product ( 

@@ -1,4 +1,4 @@
-package com.ifal.cantina.model;
+package com.ifal.cantina.models;
 
 import com.ifal.cantina.interfaces.AModel;
 

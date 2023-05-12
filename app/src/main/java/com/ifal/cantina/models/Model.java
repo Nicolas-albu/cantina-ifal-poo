@@ -1,6 +1,7 @@
-package com.ifal.cantina.model;
+package com.ifal.cantina.models;
 
 import com.ifal.cantina.interfaces.AModel;
+import com.ifal.cantina.reflections.Database;
 
 public class Model extends AModel {
 

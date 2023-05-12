@@ -1,4 +1,4 @@
-package com.ifal.cantina.view;
+package com.ifal.cantina.views;
 
 import java.util.ArrayList;
 import java.util.List;

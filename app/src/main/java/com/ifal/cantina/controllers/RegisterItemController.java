@@ -1,6 +1,6 @@
-package com.ifal.cantina.controller;
+package com.ifal.cantina.controllers;
 
-import com.ifal.cantina.view.RegisterItemView;
+import com.ifal.cantina.views.RegisterItemView;
 import com.ifal.cantina.entities.Product;
 import com.ifal.cantina.interfaces.*;
 

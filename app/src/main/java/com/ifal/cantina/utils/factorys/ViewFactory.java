@@ -4,13 +4,13 @@ import java.util.function.Supplier;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.ifal.cantina.controller.RegisterItemController;
+import com.ifal.cantina.controllers.RegisterItemController;
 import com.ifal.cantina.interfaces.AController;
-import com.ifal.cantina.controller.Controller;
+import com.ifal.cantina.controllers.Controller;
 
-import com.ifal.cantina.view.RegisterItemView;
+import com.ifal.cantina.views.RegisterItemView;
 import com.ifal.cantina.interfaces.AView;
-import com.ifal.cantina.view.View;
+import com.ifal.cantina.views.View;
 
 
 public class ViewFactory {

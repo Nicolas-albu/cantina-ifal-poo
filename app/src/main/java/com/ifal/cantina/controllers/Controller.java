@@ -1,4 +1,4 @@
-package com.ifal.cantina.controller;
+package com.ifal.cantina.controllers;
 
 import com.ifal.cantina.interfaces.AController;
 import com.ifal.cantina.interfaces.AModel;

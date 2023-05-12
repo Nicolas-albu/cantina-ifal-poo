@@ -3,9 +3,9 @@
  */
 package com.ifal.cantina;
 
-import com.ifal.cantina.controller.Controller;
-import com.ifal.cantina.model.Model;
-import com.ifal.cantina.view.View;
+import com.ifal.cantina.controllers.Controller;
+import com.ifal.cantina.models.Model;
+import com.ifal.cantina.views.View;
 import com.ifal.cantina.interfaces.*;
 
 /**

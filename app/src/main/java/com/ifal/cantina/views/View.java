@@ -1,4 +1,4 @@
-package com.ifal.cantina.view;
+package com.ifal.cantina.views;
 
 import com.ifal.cantina.utils.ReadProperties;
 import com.ifal.cantina.interfaces.AView;
