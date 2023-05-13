@@ -1,13 +1,13 @@
 package com.ifal.cantina.controllers;
 
+import com.ifal.cantina.interfaces.AController;
 import com.ifal.cantina.views.RegisterItemView;
 import com.ifal.cantina.entities.Product;
-import com.ifal.cantina.interfaces.*;
 
 public class RegisterItemController extends AController {
     
-    public RegisterItemController(AModel model, AView view) {
-        super(model, view);
+    public RegisterItemController() {
+        super();
     }
     
     @Override
