@@ -18,8 +18,6 @@ public class Controller extends AController {
             case 1:
                 new RegisterItemController().run();
                 break;
-//            case 2:
-
         }
     }
 }
