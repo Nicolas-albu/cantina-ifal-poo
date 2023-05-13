@@ -1,38 +1,89 @@
 package com.ifal.cantina.utils;
 
-import java.util.InputMismatchException;
+import com.ifal.cantina.annotations.Overload;
+
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class HandleInput {
-    private Scanner read;
+    private static final Scanner read = new Scanner(System.in);
 
-    public HandleInput(Scanner read) {
-        this.read = read;
+    public static String handleString(String question) {
+        String output;
+
+        while (true) {
+            try {
+                System.out.print(question);
+                output = read.nextLine().trim();
+
+                if (output.isEmpty())
+                    throw new NoSuchElementException();
+                break;
+
+            } catch (NoSuchElementException error) {
+                System.out.printf("%s\n%n", ReadProperties.getProperty("error.show.expect-string"));
+            }
+        }
+
+        return output;
     }
 
-    public String handle(String message) {
-        String output = null;
-        
-        while (output == null) {
+    @Overload
+    public static int handleInteger(String question) {
+        int output;
+
+        while (true) {
             try {
-                System.out.print(message);
-                output = this.read.nextLine();
-    
-            } catch (NoSuchElementException error) {
-                System.err.println(ReadProperties.getProperty("error.show.expect-string"));
-                
-                continue;
-            } catch (Exception error) {
-                boolean existInteger = output.matches(ReadProperties.getProperty("util.exist-integer"));
-                boolean existDouble = output.matches(ReadProperties.getProperty("util.exist-double"));
-                
-                if (error instanceof InputMismatchException && existInteger)
-                    System.err.println(ReadProperties.getProperty("error.show.expect-integer"));
-                if (error instanceof InputMismatchException && existDouble)
-                    System.err.println(ReadProperties.getProperty("error.show.expect-double"));
-                
-                continue;
+                System.out.print(question);
+                output = Integer.parseInt(read.nextLine().trim());
+
+                if (output <= 0)
+                    throw new NumberFormatException();
+                break;
+
+            } catch (NumberFormatException error) {
+                System.out.printf("%s\n%n", ReadProperties.getProperty("error.show.expect-integer"));
+            }
+        }
+
+        return output;
+    };
+
+    @Overload
+    public static int handleInteger(String question, int limitNumberOfInput) {
+        int output;
+
+        while (true) {
+            try {
+                System.out.print(question);
+                output = Integer.parseInt(read.nextLine().trim());
+
+                if (output <= 0 || output > limitNumberOfInput)
+                    throw new NumberFormatException();
+                break;
+
+            } catch (NumberFormatException error) {
+                System.out.printf("%s\n%n", ReadProperties.getProperty("error.show.expect-integer"));
+            }
+        }
+
+        return output;
+    }
+
+    public static double handleDouble(String question) {
+        double output;
+
+        while (true) {
+            try {
+                System.out.print(question);
+                output = Double.parseDouble(read.nextLine().trim());
+
+                if (output <= 0)
+                    throw new NumberFormatException();
+                break;
+
+            } catch (NumberFormatException error) {
+                System.out.printf("%s\n%n", ReadProperties.getProperty("error.show.expect-double"));
             }
         }
 
