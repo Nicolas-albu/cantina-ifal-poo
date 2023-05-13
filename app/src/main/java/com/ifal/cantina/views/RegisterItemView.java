@@ -5,9 +5,10 @@ import java.util.List;
 
 import com.ifal.cantina.entities.Product;
 import com.ifal.cantina.interfaces.AView;
+import com.ifal.cantina.utils.HandleInput;
 
 public class RegisterItemView extends AView {
-    
+
     public RegisterItemView() {
         super();
     }
@@ -16,8 +17,8 @@ public class RegisterItemView extends AView {
         System.out.println("=========================");
         System.out.println("Cadastrar item no estoque");
         System.out.println("=========================\n");
-     
-        List<String> questions = new ArrayList<>() 
+
+        List<String> questions = new ArrayList<>()
         {
             {
                 add("Digite o nome do item: ");
@@ -27,14 +28,11 @@ public class RegisterItemView extends AView {
             }
         };
 
-        String name_product = super.handleInputs.handle(questions.get(0));
-        String description_product = super.handleInputs.handle(questions.get(1));
+        String name_product = HandleInput.handleString(questions.get(0));
+        String description_product = HandleInput.handleString(questions.get(1));
 
-        int quantity_product = Integer.parseInt(
-            super.handleInputs.handle(questions.get(2)));
-
-        double price_product = Double.parseDouble(
-             super.handleInputs.handle(questions.get(3)));
+        int quantity_product = HandleInput.handleInteger(questions.get(2));
+        double price_product = HandleInput.handleDouble(questions.get(3));
 
         return new Product(name_product, price_product, quantity_product, description_product);
     }
