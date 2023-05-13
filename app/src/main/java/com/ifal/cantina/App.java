@@ -21,10 +21,7 @@ public class App {
      * @param args command line arguments.
      */
     public static void main(String[] args) {
-        AModel model = new Model();
-        AView view = new View();
-        AController controller = new Controller(model, view);
-        
+        AController controller = new Controller();
         controller.run();
     }
 }
