@@ -1,5 +1,6 @@
 package com.ifal.cantina.views;
 
+import com.ifal.cantina.utils.HandleInput;
 import com.ifal.cantina.utils.ReadProperties;
 import com.ifal.cantina.interfaces.AView;
 
@@ -15,7 +16,6 @@ public class View extends AView {
         int option_choice = -1;
         int quantity_options = Integer.parseInt(
             ReadProperties.getProperty("show.menu.quantity.options"));
-        
 
         while(option_choice == -1) {
             System.out.println("===================================================");
@@ -26,12 +26,14 @@ public class View extends AView {
             for(int index_menu = 0; index_menu < quantity_options; index_menu++) {
                 key_property = "show.menu." + (index_menu + 1);
 
-                System.out.println((index_menu + 1) + " - " 
+                System.out.println(
+                        (index_menu + 1)
+                        + " - "
                         + ReadProperties.getProperty(key_property));
             }
 
-            option_choice = Integer.parseInt(super.handleInputs
-                    .handle("Digite um numero da opcao: "));
+            option_choice = HandleInput.handleInteger(
+                    "Digite um numero da opcao: ", quantity_options);
         }
     
         return option_choice;
