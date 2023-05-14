@@ -7,6 +7,8 @@ import java.sql.SQLException;
  * This interface provides methods for manipulating data in the model's data storage.
  *
  * @author Nicolas Albuquerque R.
+ * @see AController
+ * @see AView
  */
 public interface IModel {
 
@@ -27,7 +29,7 @@ public interface IModel {
      *
      * @param entity the entity to be deleted.
      */
-    IModel delete(Object entity);
+    IModel delete(Object entity) throws IllegalAccessException;
 
     /**
      * Queries data from the storage based on an ID.
