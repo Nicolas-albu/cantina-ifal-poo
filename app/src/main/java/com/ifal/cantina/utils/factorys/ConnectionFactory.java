@@ -28,9 +28,10 @@ public class ConnectionFactory {
                 ReadProperties.getUrlConnection(),
                 ReadProperties.getProperty("db.username"),
                 ReadProperties.getProperty("db.password"));
+
         } catch (SQLException error) {
-            System.out.println(Utils.coloredExceptionMessage(
-                    "Ocorreu um erro: %s%n", error.getMessage()));
+            System.out.println(Utils
+                    .coloredExceptionMessage("Ocorreu um erro: %s%n", error.getMessage()));
         }
 
         return connection;
