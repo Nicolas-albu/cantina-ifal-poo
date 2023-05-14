@@ -11,7 +11,7 @@ import com.ifal.cantina.utils.factorys.ViewFactory;
  * @author Nicolas Albuquerque R.
  */
 public abstract class AController {
-    protected AModel model;
+    protected IModel model;
     protected AView view;
 
     /**
@@ -20,7 +20,7 @@ public abstract class AController {
      */
     @Overload
     public AController(){
-        this.model = ModelFactory.createModel(this);
+        this.model = ModelFactory.createModel();
         this.view = ViewFactory.createView(this);
     }
 
@@ -32,7 +32,7 @@ public abstract class AController {
      * @param view  the view to be associated with the controller.
      */
     @Overload
-    public AController(AModel model, AView view) {
+    public AController(IModel model, AView view) {
         this.model = model;
         this.view = view;
     }
