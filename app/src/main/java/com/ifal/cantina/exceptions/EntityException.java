@@ -1,11 +1,12 @@
 package com.ifal.cantina.exceptions;
 
 /**
- * Exception class representing an error related to entities in the application.
- * It is used to handle exceptional conditions that occur during entity operations.
- * This exception provides a custom detail message.
+ * <p> Exception class representing an error related to entities in the application. It is used to
+ *     handle exceptional conditions that occur during entity operations.</p>
+ * <p> This exception provides a custom detail message.</p>
  *
  * @author Nicolas Albuquerque R.
+ * @see Exception
  */
 public class EntityException extends Exception {
     private String detailMessage = null;
@@ -24,6 +25,7 @@ public class EntityException extends Exception {
      *
      * @return the detail message as a string.
      */
+    @Override
     public String getMessage() {
         return this.detailMessage;
     }
