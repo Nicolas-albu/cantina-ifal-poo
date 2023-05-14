@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ifal.cantina.entities.Product;
+import com.ifal.cantina.exceptions.EntityException;
 import com.ifal.cantina.interfaces.AView;
 import com.ifal.cantina.utils.HandleInput;
 
@@ -22,7 +23,7 @@ public class RegisterItemView extends AView {
     }
 
     @Override
-    public Object show() {
+    public Object show() throws EntityException {
         System.out.println("=========================");
         System.out.println("Cadastrar item no estoque");
         System.out.println("=========================\n");
