@@ -7,21 +7,25 @@ Leve em consideração os seguintes tópicos:
 - Esse projeto também não tem implicação real, apenas para nota de curso.
 
 ## :pushpin: **Tasks**
-- [ ] Criar todas as tabelas do Modelo relacional no MYSQL;
+- [x] Criar todas as tabelas do Modelo relacional no MYSQL;
 - [ ] O programa deve:
-	- [ ] Fornecer um menu de opções.
+	- [x] Fornecer um menu de opções.
 	- [ ] Operacoes com funcionarios:
 		- [ ] Adicionar funcionario
 		- [ ] Remover funcionario
 	- [ ] Não permitir que sejam cadastrados itens com preços inválidos, inclusive preço de venda menor que o preço de
 	compra.
-	- [ ] Guardar a informação dos itens do estoque da cantina (nome, descrição, preço de compra, preço
-	de venda e quantidade comprada, quantidade vendida).
-	- [ ] Não permitir que a quantidade de itens disponíveis seja inválida.
+	- [ ] Guardar a informação dos itens do estoque da cantina: 
+      - [x] nome do produto, 
+      - [x] descrição do produto, 
+      - [ ] preço de compra do produto, 
+      - [x] preço unitário do produto
+      de venda e quantidade comprada, quantidade vendida).
+	- [x] Não permitir que a quantidade de itens disponíveis seja inválida.
 	- [ ] Permitir que o administrador da cantina:
-		- [ ] cadastre itens no estoque.
+		- [x] cadastre itens no estoque.
 		- [ ] altere itens no estoque.
-		- [ ] exclua itens no estoque.
+		- [x] exclua itens no estoque.
 	- [ ] Dar baixa nos itens vendidos do estoque.
 	- [ ] Permitir resumo de itens:
 		- [ ] Mostrar um resumo dos itens e
@@ -32,19 +36,3 @@ Leve em consideração os seguintes tópicos:
 		- [ ] Mostrar resumo do lucro/prejuízo de acordo com a baixa dos produtos no estoque.
 		- [ ] Mostrar o total vendido por dia.
 		- [ ] Mostrar o valor total por mês.
-
-
-===================================================
-Bem-vindo ao Controle de Estoque da Cantina do IFAL
-===================================================
-Selecione uma das seguintes opcoes:
-1 - Cadastrar item no estoque
-2 - Alterar item no estoque
-3 - Excluir item no estoque
-4 - Dar baixa nos itens vendidos do estoque
-5 - Resumo dos itens
-6 - Resumo dos lucros
-7 - Adicionar funcionario
-8 - Remover funcionario
-9 - Sair
-Digite um numero da opcao: 
