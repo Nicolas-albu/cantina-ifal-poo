@@ -2,6 +2,9 @@ package com.ifal.cantina.entities;
 
 import com.ifal.cantina.annotations.DBField;
 import com.ifal.cantina.annotations.DBTable;
+import com.ifal.cantina.exceptions.EntityException;
+import com.ifal.cantina.utils.ReadProperties;
+import com.ifal.cantina.utils.Utils;
 
 /**
  * Represents a Product entity in the application.
@@ -34,15 +37,12 @@ public class Product {
      * @param quantity_product the quantity of the product.
      * @param description_product the description of the product.
      */
-    public Product(
-            String name_product,
-            double price_product,
-            int quantity_product,
-            String description_product) {
-        this.name_product = name_product;
-        this.price_product = price_product;
-        this.quantity_product = quantity_product;
-        this.description_product = description_product;
+    public Product(String name_product, double price_product,
+                   int quantity_product, String description_product) throws EntityException {
+        this.setName_product(name_product);
+        this.setPrice_product(price_product);
+        this.setQuantity_product(quantity_product);
+        this.setDescription_product(description_product);
     }
 
     /**
@@ -52,15 +52,6 @@ public class Product {
      */
     public int getCode_product() {
         return this.code_product;
-    }
-
-    /**
-     * Sets the code of the product.
-     *
-     * @param code_product the code of the product.
-     */
-    public void setCode_product(int code_product) {
-        this.code_product = code_product;
     }
 
     /**
@@ -77,7 +68,10 @@ public class Product {
      *
      * @param name_product the name of the product.
      */
-    public void setName_product(String name_product) {
+    public void setName_product(String name_product) throws EntityException {
+        if (name_product.isBlank() || name_product.isEmpty() || Utils.containsOnlyInteger(name_product))
+            throw new EntityException(ReadProperties.getProperty("error.entity.name"));
+
         this.name_product = name_product;
     }
 
@@ -95,7 +89,11 @@ public class Product {
      *
      * @param price_product the price of the product.
      */
-    public void setPrice_product(double price_product) {
+    public void setPrice_product(double price_product) throws EntityException {
+        if (price_product < 0)
+            throw new EntityException(
+                    ReadProperties.getProperty("error.entity.expect-price-greater-than-zero"));
+
         this.price_product = price_product;
     }
 
@@ -113,7 +111,11 @@ public class Product {
      *
      * @param quantity_product the quantity of the product.
      */
-    public void setQuantity_product(int quantity_product) {
+    public void setQuantity_product(int quantity_product) throws EntityException {
+        if (quantity_product < 0)
+            throw new EntityException(
+                    ReadProperties.getProperty("error.entity.expect-quantity-greater-than-zero"));
+
         this.quantity_product = quantity_product;
     }
 
