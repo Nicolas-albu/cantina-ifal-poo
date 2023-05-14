@@ -13,6 +13,8 @@ import com.ifal.cantina.views.*;
  * Pattern Factory to the views corresponding to your controllers.
  *
  * @author Nicolas Albuquerque R.
+ * @see AController
+ * @see AView
  */
 public class ViewFactory {
 
@@ -24,6 +26,7 @@ public class ViewFactory {
             {
                 put(Controller.class, View::new);
                 put(RegisterItemController.class, RegisterItemView::new);
+                put(ItemRemovalController.class, ItemRemovalView::new);
             }
         };
 
