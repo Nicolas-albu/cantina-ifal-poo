@@ -1,9 +1,9 @@
 package com.ifal.cantina.interfaces;
 
-import java.util.Scanner;
-
 import com.ifal.cantina.exceptions.EntityException;
 import com.ifal.cantina.utils.Utils;
+
+import java.util.Scanner;
 
 /**
  * Represents a view in the application.
