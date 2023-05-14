@@ -12,6 +12,7 @@ import com.ifal.cantina.annotations.Overload;
 public class Utils {
     private static final String ANSI_RESET = "\u001B[0m";
     private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_GREEN = "\u001B[32m";
 
     /**
      * Returns a colored exception message.
@@ -39,6 +40,16 @@ public class Utils {
         exceptionMessage = String.format(exceptionMessage, args);
 
         return ANSI_RED + exceptionMessage + ANSI_RESET;
+    }
+
+    /**
+     * Formats the result message with colored text.
+     *
+     * @param resultMessage the result message to be colored.
+     * @return the result message with colored text.
+     */
+    public static String coloredResultMessage(String resultMessage) {
+        return ANSI_GREEN + resultMessage + ANSI_RESET;
     }
 
     /**
