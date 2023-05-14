@@ -28,12 +28,39 @@ public class HandleInput {
                 System.out.print(question);
                 output = read.nextLine().trim();
 
-                if (output.isEmpty())
-                    throw new NoSuchElementException();
+                if (output.isEmpty()) throw new NoSuchElementException();
                 break;
 
             } catch (NoSuchElementException error) {
-                System.out.printf("%s\n%n", ReadProperties.getProperty("error.show.expect-string"));
+                System.out.println(Utils.coloredExceptionMessage("%s%n",
+                        ReadProperties.getProperty("error.show.expect-string")));
+            }
+        }
+
+        return output;
+    }
+
+
+    /**
+     * Handles user input for a non-empty string value.
+     * It then trims the input to remove leading and trailing whitespace.
+     *
+     * @param question the prompt/question to display to the user.
+     * @return the user input as a non-empty string.
+     */
+    public static String handleNonEmptyString(String question) {
+        String output;
+
+        while (true) {
+            try {
+                System.out.print(question);
+                output = read.nextLine().trim();
+
+                break;
+
+            } catch (NoSuchElementException error) {
+                System.out.println(Utils.coloredExceptionMessage("%s%n",
+                        ReadProperties.getProperty("error.show.expect-string")));
             }
         }
 
@@ -55,22 +82,22 @@ public class HandleInput {
                 System.out.print(question);
                 output = Integer.parseInt(read.nextLine().trim());
 
-                if (output <= 0)
-                    throw new NumberFormatException();
+                if (output <= 0) throw new NumberFormatException();
                 break;
 
             } catch (NumberFormatException error) {
-                System.out.printf("%s\n%n", ReadProperties.getProperty("error.show.expect-integer"));
+                System.out.println(Utils.coloredExceptionMessage("%s%n",
+                        ReadProperties.getProperty("error.show.expect-integer")));
             }
         }
 
         return output;
-    };
+    }
 
     /**
      * Handles user input for an integer value within a specified range.
      *
-     * @param question the prompt/question to display to the user.
+     * @param question           the prompt/question to display to the user.
      * @param limitNumberOfInput the upper limit of the acceptable input range.
      * @return the user input as an integer within the specified range.
      */
@@ -83,12 +110,12 @@ public class HandleInput {
                 System.out.print(question);
                 output = Integer.parseInt(read.nextLine().trim());
 
-                if (output <= 0 || output > limitNumberOfInput)
-                    throw new NumberFormatException();
+                if (output <= 0 || output > limitNumberOfInput) throw new NumberFormatException();
                 break;
 
             } catch (NumberFormatException error) {
-                System.out.printf("%s\n%n", ReadProperties.getProperty("error.show.expect-integer"));
+                System.out.println(Utils.coloredExceptionMessage("%s%n",
+                        ReadProperties.getProperty("error.show.expect-integer")));
             }
         }
 
@@ -109,12 +136,12 @@ public class HandleInput {
                 System.out.print(question);
                 output = Double.parseDouble(read.nextLine().trim());
 
-                if (output <= 0)
-                    throw new NumberFormatException();
+                if (output <= 0) throw new NumberFormatException();
                 break;
 
             } catch (NumberFormatException error) {
-                System.out.printf("%s\n%n", ReadProperties.getProperty("error.show.expect-double"));
+                System.out.println(Utils.coloredExceptionMessage("%s%n",
+                        ReadProperties.getProperty("error.show.expect-double")));
             }
         }
 
