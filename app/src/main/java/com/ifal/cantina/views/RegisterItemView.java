@@ -1,12 +1,12 @@
 package com.ifal.cantina.views;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.ifal.cantina.entities.Product;
 import com.ifal.cantina.exceptions.EntityException;
 import com.ifal.cantina.interfaces.AView;
 import com.ifal.cantina.utils.HandleInput;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Subclass of AView for create new object Product.
@@ -28,8 +28,7 @@ public class RegisterItemView extends AView {
         System.out.println("Cadastrar item no estoque");
         System.out.println("=========================\n");
 
-        List<String> questions = new ArrayList<>()
-        {
+        List<String> questions = new ArrayList<>() {
             {
                 add("Digite o nome do item: ");
                 add("Digite a descricao do item: ");
@@ -39,7 +38,7 @@ public class RegisterItemView extends AView {
         };
 
         String name_product = HandleInput.handleString(questions.get(0));
-        String description_product = HandleInput.handleString(questions.get(1));
+        String description_product = HandleInput.handleNonEmptyString(questions.get(1));
 
         int quantity_product = HandleInput.handleInteger(questions.get(2));
         double price_product = HandleInput.handleDouble(questions.get(3));
