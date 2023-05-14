@@ -4,16 +4,21 @@ import java.util.function.Supplier;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.ifal.cantina.controllers.RegisterItemController;
 import com.ifal.cantina.interfaces.AController;
-import com.ifal.cantina.controllers.Controller;
-
-import com.ifal.cantina.views.RegisterItemView;
 import com.ifal.cantina.interfaces.AView;
-import com.ifal.cantina.views.View;
+import com.ifal.cantina.controllers.*;
+import com.ifal.cantina.views.*;
 
-
+/**
+ * Pattern Factory to the views corresponding to your controllers.
+ *
+ * @author Nicolas Albuquerque R.
+ */
 public class ViewFactory {
+
+    /**
+     * @return the instance of view.
+     */
     public static AView createView(AController controller) {
         Map<Class<? extends AController>, Supplier<AView>> typeControllers = new HashMap<>() {
             {

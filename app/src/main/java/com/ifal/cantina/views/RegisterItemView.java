@@ -7,12 +7,21 @@ import com.ifal.cantina.entities.Product;
 import com.ifal.cantina.interfaces.AView;
 import com.ifal.cantina.utils.HandleInput;
 
+/**
+ * Subclass of AView for create new object Product.
+ *
+ * @author Nicolas Albuquerque R.
+ */
 public class RegisterItemView extends AView {
 
+    /**
+     * Create the new instance of RegisterItemView.
+     */
     public RegisterItemView() {
         super();
     }
 
+    @Override
     public Object show() {
         System.out.println("=========================");
         System.out.println("Cadastrar item no estoque");
