@@ -1,13 +1,14 @@
 package com.ifal.cantina.views;
 
-import com.ifal.cantina.interfaces.AView;
-import com.ifal.cantina.utils.HandleInput;
 import com.ifal.cantina.utils.ReadProperties;
+import com.ifal.cantina.utils.HandleInput;
+import com.ifal.cantina.interfaces.AView;
 
 /**
  * Subclass of AView which is the main/initial View, for selecting menu options.
  *
  * @author Nicolas Albuquerque R.
+ * @see AView
  */
 public class View extends AView {
 
