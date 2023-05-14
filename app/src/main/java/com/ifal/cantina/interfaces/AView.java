@@ -2,6 +2,9 @@ package com.ifal.cantina.interfaces;
 
 import java.util.Scanner;
 
+import com.ifal.cantina.exceptions.EntityException;
+import com.ifal.cantina.utils.Utils;
+
 /**
  * Represents a view in the application.
  * Provides a common interface for displaying information and interacting with the user.
@@ -22,7 +25,24 @@ public abstract class AView {
     /**
      * Displays the view and handles user interaction.
      *
-     * @return an object representing the result of the user interaction
+     * @return an object representing the result of the user interaction.
      */
-    public abstract Object show();
+    public abstract Object show() throws EntityException;
+
+    /**
+     * Prints the message of an exception.
+     *
+     * @param exception the exception to be printed.
+     */
+    public void printException(Exception exception) {
+        System.out.println(Utils.coloredExceptionMessage(exception.getMessage()));
+    }
+
+    /**
+     * Closes the associated resource.
+     * In this case, it closes the Scanner object used for input reading.
+     */
+    public void close() {
+        this.read.close();
+    }
 }
