@@ -3,13 +3,13 @@
  */
 package com.ifal.cantina.utils;
 
-import java.util.Properties;
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 /**
  * Reading the application settings file.
- * 
+ *
  * @author Nicolas Albuquerque R.
  */
 public class ReadProperties {
@@ -17,7 +17,7 @@ public class ReadProperties {
 
     /**
      * Gets and returns a property by its key.
-     * 
+     *
      * @param keyProperty property key you want to discover its value.
      * @return return the value of key property.
      */
@@ -25,18 +25,18 @@ public class ReadProperties {
         Properties property = new Properties();
         String valueProperty = null;
 
-        try(InputStream fileProperties = ReadProperties
+        try (InputStream fileProperties = ReadProperties
                 .class
                 .getClassLoader()
                 .getResourceAsStream(PROPERTIES_FILE_NAME)) {
-            
+
             property.load(fileProperties);
             valueProperty = property.getProperty(keyProperty);
 
         } catch (IOException error) {
             System.err.format("Erro ao ler o arquivo de propriedade: %s\n", error.getMessage());
         }
-        
+
         return valueProperty;
     }
 
@@ -44,11 +44,8 @@ public class ReadProperties {
      * @return return the URL connection to database.
      */
     public static String getUrlConnection() {
-        return String.format(
-                "jdbc:%s://%s:%s/%s",
-                getProperty("db.type"),
-                getProperty("db.host"),
-                getProperty("db.port"),
-                getProperty("db.name"));
+        return String.format("jdbc:%s://%s:%s/%s",
+                getProperty("db.type"), getProperty("db.host"),
+                getProperty("db.port"), getProperty("db.name"));
     }
 }
