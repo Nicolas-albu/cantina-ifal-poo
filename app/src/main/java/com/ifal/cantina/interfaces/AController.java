@@ -19,7 +19,7 @@ public abstract class AController {
      * Creates a default model and view using the ModelFactory and ViewFactory.
      */
     @Overload
-    public AController(){
+    public AController() {
         this.model = ModelFactory.createModel();
         this.view = ViewFactory.createView(this);
     }
