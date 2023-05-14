@@ -1,5 +1,6 @@
 package com.ifal.cantina.controllers;
 
+import com.ifal.cantina.exceptions.EntityException;
 import com.ifal.cantina.interfaces.AController;
 
 /**
@@ -19,14 +20,31 @@ public class Controller extends AController {
 
     @Override
     public void run() {
-        int resultShowMenu = (Integer) super.view.show();
-
-        switch (resultShowMenu) {
+        switch (this.getResultShowMenu()) {
             case 9:
                 break;
             case 1:
                 new RegisterItemController().run();
                 break;
         }
+
+        this.view.close();
+    }
+
+    /**
+     * Retrieves the user's choice from the View component.
+     *
+     * @return The user's choice as an integer.
+     */
+    private int getResultShowMenu() {
+        int resultShowMenu = 9;
+
+        try {
+            resultShowMenu = (Integer) super.view.show();
+        } catch (EntityException error) {
+            this.view.printException(error);
+        }
+
+        return resultShowMenu;
     }
 }
