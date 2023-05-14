@@ -8,14 +8,14 @@ import com.ifal.cantina.interfaces.AController;
 
 /**
  * Application initializer class.
- * 
+ *
  * @author Nicolas Albuquerque R.
  */
 public class App {
-    
+
     /**
      * Application initializer method.
-     * 
+     *
      * @param args command line arguments.
      */
     public static void main(String[] args) {
