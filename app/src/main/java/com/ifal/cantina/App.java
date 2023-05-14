@@ -4,9 +4,7 @@
 package com.ifal.cantina;
 
 import com.ifal.cantina.controllers.Controller;
-import com.ifal.cantina.models.Model;
-import com.ifal.cantina.views.View;
-import com.ifal.cantina.interfaces.*;
+import com.ifal.cantina.interfaces.AController;
 
 /**
  * Application initializer class.
