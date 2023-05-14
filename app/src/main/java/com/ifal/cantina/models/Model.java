@@ -1,16 +1,16 @@
 package com.ifal.cantina.models;
 
+import com.ifal.cantina.annotations.DBField;
+import com.ifal.cantina.annotations.DBTable;
+import com.ifal.cantina.interfaces.IModel;
+import com.ifal.cantina.utils.factorys.ConnectionFactory;
+
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.ifal.cantina.annotations.DBField;
-import com.ifal.cantina.annotations.DBTable;
-import com.ifal.cantina.interfaces.IModel;
-import com.ifal.cantina.utils.factorys.ConnectionFactory;
 
 /**
  * Class representing a model in the application.
@@ -93,8 +93,8 @@ public class Model implements IModel {
     /**
      * Builds the SQL statement for inserting data into a table.
      *
-     * @param tableName    the name of the table.
-     * @param dataEntity   the data to be inserted, represented as a map of field names and values.
+     * @param tableName  the name of the table.
+     * @param dataEntity the data to be inserted, represented as a map of field names and values.
      * @return the SQL statement for the insertion.
      */
     private String buildSqlForInsert(String tableName, Map<String, String> dataEntity) {
@@ -102,11 +102,9 @@ public class Model implements IModel {
         StringBuilder statementValues = new StringBuilder();
 
         for (String entityField : dataEntity.keySet()) {
-            if (!statementFields.toString().equals(""))
-                statementFields.append(", ");
+            if (!statementFields.toString().equals("")) statementFields.append(", ");
 
-            if (!statementValues.toString().equals(""))
-                statementValues.append(", ");
+            if (!statementValues.toString().equals("")) statementValues.append(", ");
 
             String valueField = dataEntity.get(entityField);
 
