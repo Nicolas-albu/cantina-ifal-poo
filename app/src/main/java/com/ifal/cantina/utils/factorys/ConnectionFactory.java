@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Connection;
 
 import com.ifal.cantina.utils.ReadProperties;
+import com.ifal.cantina.utils.Utils;
 
 /**
  * Pattern Factory the connection to database.
@@ -28,7 +29,8 @@ public class ConnectionFactory {
                 ReadProperties.getProperty("db.username"),
                 ReadProperties.getProperty("db.password"));
         } catch (SQLException error) {
-            System.out.printf("Ocorreu um erro: %s%n", error.getMessage());
+            System.out.println(Utils.coloredExceptionMessage(
+                    "Ocorreu um erro: %s%n", error.getMessage()));
         }
 
         return connection;
