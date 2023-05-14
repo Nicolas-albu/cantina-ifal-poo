@@ -31,7 +31,7 @@ public class Utils {
      * After formatting it with the given arguments.
      *
      * @param exceptionMessage The exception message to be colored and formatted.
-     * @param args The arguments to be inserted into the formatted exception message.
+     * @param args             The arguments to be inserted into the formatted exception message.
      * @return The colored and formatted exception message.
      */
     @Overload
