@@ -32,13 +32,13 @@ public class Product {
     /**
      * Constructs a new instance of the Product class.
      *
-     * @param name_product the name of the product.
-     * @param price_product the price of the product.
-     * @param quantity_product the quantity of the product.
+     * @param name_product        the name of the product.
+     * @param price_product       the price of the product.
+     * @param quantity_product    the quantity of the product.
      * @param description_product the description of the product.
      */
-    public Product(String name_product, double price_product,
-                   int quantity_product, String description_product) throws EntityException {
+    public Product(String name_product, double price_product, int quantity_product,
+                   String description_product) throws EntityException {
         this.setName_product(name_product);
         this.setPrice_product(price_product);
         this.setQuantity_product(quantity_product);
@@ -91,8 +91,8 @@ public class Product {
      */
     public void setPrice_product(double price_product) throws EntityException {
         if (price_product < 0)
-            throw new EntityException(
-                    ReadProperties.getProperty("error.entity.expect-price-greater-than-zero"));
+            throw new EntityException(ReadProperties
+                    .getProperty("error.entity.expect-price-greater-than-zero"));
 
         this.price_product = price_product;
     }
@@ -113,8 +113,8 @@ public class Product {
      */
     public void setQuantity_product(int quantity_product) throws EntityException {
         if (quantity_product < 0)
-            throw new EntityException(
-                    ReadProperties.getProperty("error.entity.expect-quantity-greater-than-zero"));
+            throw new EntityException(ReadProperties
+                    .getProperty("error.entity.expect-quantity-greater-than-zero"));
 
         this.quantity_product = quantity_product;
     }
