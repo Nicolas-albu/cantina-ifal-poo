@@ -7,6 +7,7 @@ import com.ifal.cantina.interfaces.AController;
  * Subclass of AController that is the main/initial Controller.
  *
  * @author Nicolas Albuquerque R.
+ * @see AController
  */
 public class Controller extends AController {
 
@@ -26,9 +27,13 @@ public class Controller extends AController {
             case 1:
                 new RegisterItemController().run();
                 break;
+            case 3:
+                new ItemRemovalController().run();
+                break;
         }
 
-        this.view.close();
+        super.view.printResult();
+        super.view.close();
     }
 
     /**
@@ -42,7 +47,7 @@ public class Controller extends AController {
         try {
             resultShowMenu = (Integer) super.view.show();
         } catch (EntityException error) {
-            this.view.printException(error);
+            super.view.printException(error);
         }
 
         return resultShowMenu;
