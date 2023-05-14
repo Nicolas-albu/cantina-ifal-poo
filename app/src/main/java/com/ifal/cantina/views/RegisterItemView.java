@@ -1,9 +1,9 @@
 package com.ifal.cantina.views;
 
-import com.ifal.cantina.entities.Product;
 import com.ifal.cantina.exceptions.EntityException;
-import com.ifal.cantina.interfaces.AView;
 import com.ifal.cantina.utils.HandleInput;
+import com.ifal.cantina.entities.Product;
+import com.ifal.cantina.interfaces.AView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,7 @@ import java.util.List;
  * Subclass of AView for create new object Product.
  *
  * @author Nicolas Albuquerque R.
+ * @see AView
  */
 public class RegisterItemView extends AView {
 
@@ -30,19 +31,19 @@ public class RegisterItemView extends AView {
 
         List<String> questions = new ArrayList<>() {
             {
-                add("Digite o nome do item: ");
-                add("Digite a descricao do item: ");
-                add("Digite a quantidade do item: ");
-                add("Digite o preco do item: ");
+                add("Digite o nome do produto: ");
+                add("Digite a descricao do produto: ");
+                add("Digite a quantidade do produto: ");
+                add("Digite o preco unitario do produto: ");
             }
         };
 
-        String name_product = HandleInput.handleString(questions.get(0));
-        String description_product = HandleInput.handleNonEmptyString(questions.get(1));
+        String nameProduct = HandleInput.handleString(questions.get(0));
+        String descriptionProduct = HandleInput.handleNonEmptyString(questions.get(1));
 
-        int quantity_product = HandleInput.handleInteger(questions.get(2));
-        double price_product = HandleInput.handleDouble(questions.get(3));
+        int quantityProduct = HandleInput.handleInteger(questions.get(2));
+        double priceProduct = HandleInput.handleDouble(questions.get(3));
 
-        return new Product(name_product, price_product, quantity_product, description_product);
+        return new Product(nameProduct, priceProduct, quantityProduct, descriptionProduct);
     }
 }
