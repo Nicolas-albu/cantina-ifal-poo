@@ -1,5 +1,6 @@
 package com.ifal.cantina.interfaces;
 
+import com.ifal.cantina.utils.factorys.ResultMessageFactory;
 import com.ifal.cantina.exceptions.EntityException;
 import com.ifal.cantina.utils.Utils;
 
@@ -10,6 +11,8 @@ import java.util.Scanner;
  * Provides a common interface for displaying information and interacting with the user.
  *
  * @author Nicolas Albuquerque R.
+ * @see AController
+ * @see IModel
  */
 public abstract class AView {
     protected Scanner read;
@@ -35,7 +38,16 @@ public abstract class AView {
      * @param exception the exception to be printed.
      */
     public void printException(Exception exception) {
-        System.out.println(Utils.coloredExceptionMessage(exception.getMessage()));
+        System.out.println(Utils.coloredResultMessage(exception.getMessage()));
+    }
+
+    /**
+     * Prints the result message to the console.
+     */
+    public void printResult() {
+        String resultMessage = ResultMessageFactory.getResultMessage(this);
+
+        System.out.println(Utils.coloredResultMessage(resultMessage));
     }
 
     /**
