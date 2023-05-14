@@ -8,3 +8,6 @@ app/bin
 # Ignore project-specific settings directory
 .vscode
 .idea
+
+# Others
+scripts
