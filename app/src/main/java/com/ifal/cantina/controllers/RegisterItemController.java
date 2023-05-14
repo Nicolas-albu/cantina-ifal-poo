@@ -10,6 +10,7 @@ import java.sql.SQLException;
  * Subclass of AController to control item registration.
  *
  * @author Nicolas Albuquerque R.
+ * @see AController
  */
 public class RegisterItemController extends AController {
 
@@ -29,10 +30,11 @@ public class RegisterItemController extends AController {
             super.model.insert(product).commit();
 
         } catch (IllegalAccessException | SQLException error) {
-            this.view.printException(error);
+            super.view.printException(error);
         }
 
-        this.view.close();
+        super.view.printResult();
+        super.view.close();
     }
 
     /**
@@ -44,10 +46,10 @@ public class RegisterItemController extends AController {
         Product product = null;
 
         try {
-            product = (Product) this.view.show();
+            product = (Product) super.view.show();
 
         } catch (EntityException error) {
-            this.view.printException(error);
+            super.view.printException(error);
         }
 
         return product;
