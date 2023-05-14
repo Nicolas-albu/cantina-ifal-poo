@@ -1,9 +1,8 @@
 package com.ifal.cantina.entities;
 
-import com.ifal.cantina.annotations.DBField;
-import com.ifal.cantina.annotations.DBTable;
 import com.ifal.cantina.exceptions.EntityException;
 import com.ifal.cantina.utils.ReadProperties;
+import com.ifal.cantina.annotations.*;
 import com.ifal.cantina.utils.Utils;
 
 /**
@@ -11,47 +10,62 @@ import com.ifal.cantina.utils.Utils;
  * Annotated with the table name and fields for database mapping.
  *
  * @author Nicolas Albuquerque R.
+ * @see DBTable
+ * @see DBField
+ * @see Id
  */
 @DBTable(tableName = "TBL_PRODUTO")
 public class Product {
+    @Id
     @DBField(fieldName = "cod_prod")
-    private int code_product;
+    private int identifier;
 
     @DBField(fieldName = "nom_prod")
-    private String name_product;
+    private String name;
 
     @DBField(fieldName = "val_preco_uni")
-    private double price_product;
+    private double unitPrice;
 
     @DBField(fieldName = "qtd_prod")
-    private int quantity_product;
+    private int quantity;
 
     @DBField(fieldName = "des_prod")
-    private String description_product;
+    private String description;
+
+    /**
+     * Constructs a new instance of the Product class with the specified identifier.
+     *
+     * @param id the identifier of the product.
+     */
+    @Overload
+    public Product(int id) {
+        this.identifier = id;
+    }
 
     /**
      * Constructs a new instance of the Product class.
      *
-     * @param name_product        the name of the product.
-     * @param price_product       the price of the product.
-     * @param quantity_product    the quantity of the product.
-     * @param description_product the description of the product.
+     * @param name        the name of the product.
+     * @param unitPrice   the unitPrice of the product.
+     * @param quantity    the quantity of the product.
+     * @param description the description of the product.
      */
-    public Product(String name_product, double price_product, int quantity_product,
-                   String description_product) throws EntityException {
-        this.setName_product(name_product);
-        this.setPrice_product(price_product);
-        this.setQuantity_product(quantity_product);
-        this.setDescription_product(description_product);
+    @Overload
+    public Product(String name, double unitPrice, int quantity,
+                   String description) throws EntityException {
+        this.setName(name);
+        this.setUnitPrice(unitPrice);
+        this.setQuantity(quantity);
+        this.setDescription(description);
     }
 
     /**
-     * Gets the code of the product.
+     * Gets the identifier of the product.
      *
-     * @return the code of the product.
+     * @return the identifier of the product.
      */
-    public int getCode_product() {
-        return this.code_product;
+    public int getIdentifier() {
+        return this.identifier;
     }
 
     /**
@@ -59,42 +73,42 @@ public class Product {
      *
      * @return the name of the product.
      */
-    public String getName_product() {
-        return this.name_product;
+    public String getName() {
+        return this.name;
     }
 
     /**
      * Sets the name of the product.
      *
-     * @param name_product the name of the product.
+     * @param name the name of the product.
      */
-    public void setName_product(String name_product) throws EntityException {
-        if (name_product.isBlank() || name_product.isEmpty() || Utils.containsOnlyInteger(name_product))
+    public void setName(String name) throws EntityException {
+        if (name.isBlank() || name.isEmpty() || Utils.containsOnlyInteger(name))
             throw new EntityException(ReadProperties.getProperty("error.entity.name"));
 
-        this.name_product = name_product;
+        this.name = name;
     }
 
     /**
-     * Gets the price of the product.
+     * Gets the unitPrice of the product.
      *
-     * @return the price of the product.
+     * @return the unitPrice of the product.
      */
-    public double getPrice_product() {
-        return this.price_product;
+    public double getUnitPrice() {
+        return this.unitPrice;
     }
 
     /**
-     * Sets the price of the product.
+     * Sets the unitPrice of the product.
      *
-     * @param price_product the price of the product.
+     * @param unitPrice the unitPrice of the product.
      */
-    public void setPrice_product(double price_product) throws EntityException {
-        if (price_product < 0)
+    public void setUnitPrice(double unitPrice) throws EntityException {
+        if (unitPrice < 0)
             throw new EntityException(ReadProperties
-                    .getProperty("error.entity.expect-price-greater-than-zero"));
+                    .getProperty("error.entity.expect-unitPrice-greater-than-zero"));
 
-        this.price_product = price_product;
+        this.unitPrice = unitPrice;
     }
 
     /**
@@ -102,21 +116,21 @@ public class Product {
      *
      * @return the quantity of the product.
      */
-    public int getQuantity_product() {
-        return this.quantity_product;
+    public int getQuantity() {
+        return this.quantity;
     }
 
     /**
      * Sets the quantity of the product.
      *
-     * @param quantity_product the quantity of the product.
+     * @param quantity the quantity of the product.
      */
-    public void setQuantity_product(int quantity_product) throws EntityException {
-        if (quantity_product < 0)
+    public void setQuantity(int quantity) throws EntityException {
+        if (quantity < 0)
             throw new EntityException(ReadProperties
                     .getProperty("error.entity.expect-quantity-greater-than-zero"));
 
-        this.quantity_product = quantity_product;
+        this.quantity = quantity;
     }
 
     /**
@@ -124,16 +138,16 @@ public class Product {
      *
      * @return the description of the product.
      */
-    public String getDescription_product() {
-        return this.description_product;
+    public String getDescription() {
+        return this.description;
     }
 
     /**
      * Sets the description of the product.
      *
-     * @param description_product the description of the product.
+     * @param description the description of the product.
      */
-    public void setDescription_product(String description_product) {
-        this.description_product = description_product;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
