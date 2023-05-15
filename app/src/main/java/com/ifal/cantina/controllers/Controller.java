@@ -25,7 +25,7 @@ public class Controller extends AController {
             case 9:
                 break;
             case 1:
-                new RegisterItemController().run();
+                new ItemRegisterController().run();
                 break;
             case 3:
                 new ItemRemovalController().run();
