@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author Nicolas Albuquerque R.
  * @see AController
- * @see IModel
+ * @see AModel
  */
 public abstract class AView {
     protected Scanner read;
