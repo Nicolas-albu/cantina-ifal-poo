@@ -61,7 +61,7 @@ public abstract class AModel {
      *
      * @param entity the entity to be updated.
      */
-    public abstract AModel update(Object entity);
+    public abstract AModel update(Object entity) throws IllegalAccessException;
 
     /**
      * Extracts data from an entity object and returns it as a map of field names and values.
@@ -119,6 +119,35 @@ public abstract class AModel {
     }
 
     /**
+     * <p> Extracts data from an entity object, excluding the ID field, and returns it as a
+     * map of field names and values.</p>
+     *
+     * @param entity the entity object from which to extract the data.
+     * @return a map containing the field names and corresponding values.
+     * @throws IllegalAccessException if there is an error accessing the fields of the entity.
+     */
+    protected Map<String, String> extractDataFromEntityWithoutId(Object entity)
+            throws IllegalAccessException {
+        Field[] entityFields = entity.getClass().getDeclaredFields();
+
+        return new HashMap<>() {
+            {
+                for (Field field : entityFields) {
+                    field.setAccessible(true); // Pass the private attributes as visible.
+                    Id tableId = field.getAnnotation(Id.class);
+                    DBField tableField = field.getAnnotation(DBField.class);
+
+                    if (tableId == null) {
+                        String fieldName = tableField.fieldName();
+
+                        put(fieldName, field.get(entity).toString());
+                    }
+                }
+            }
+        };
+    }
+
+    /**
      * Builds the SQL statement for inserting data into a table.
      *
      * @param tableName  the name of the table.
@@ -166,5 +195,42 @@ public abstract class AModel {
 
         return String.format("DELETE FROM %s WHERE %s = %s;", tableName,
                 entityIdNameStatement, idValueStatement);
+    }
+
+    /**
+     * Builds an SQL UPDATE statement for updating a record in a table.
+     *
+     * @param tableName     the name of the table to update.
+     * @param entityId      a map containing the ID field names and their corresponding values.
+     * @param dataEntity    a map containing the field names and their updated values.
+     * @return the SQL UPDATE statement.
+     */
+    protected String buildSqlForUpdate(String tableName, Map<String, String> entityId,
+                                       Map<String, String> dataEntity) {
+
+        StringBuilder statementValues = new StringBuilder();
+        StringBuilder statementId = new StringBuilder();
+        String idValueEntity;
+        String valueField;
+
+        for (String entityField : dataEntity.keySet()) {
+            valueField = dataEntity.get(entityField);
+
+            if (valueField.isEmpty() || valueField.equals("0.0") || valueField.equals("0"))
+                continue;
+
+            if (!statementValues.toString().equals("")) statementValues.append(", ");
+
+            statementValues.append(String.format("%s = '%s'", entityField, valueField));
+        }
+
+        for (String idNameEntity : entityId.keySet()) {
+            idValueEntity = entityId.get(idNameEntity);
+
+            statementId.append(String.format("%s = '%s'", idNameEntity, idValueEntity));
+        }
+
+        return String.format("UPDATE %s SET %s WHERE %s;", tableName, statementValues,
+                statementId);
     }
 }

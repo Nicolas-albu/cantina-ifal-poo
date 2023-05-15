@@ -40,7 +40,6 @@ public class HandleInput {
         return output;
     }
 
-
     /**
      * Handles user input for a non-empty string value.
      * It then trims the input to remove leading and trailing whitespace.
@@ -123,6 +122,37 @@ public class HandleInput {
     }
 
     /**
+     * Handles user input for a non-empty integer value.
+     *
+     * @param question the prompt/question to display to the user.
+     * @return the user input as an integer.
+     * @throws NumberFormatException if the input is not a valid non-empty integer.
+     */
+    public static int handleNonEmptyInteger(String question) {
+        int output = 0;
+
+        while (true) {
+            try {
+                System.out.print(question);
+                String input = read.nextLine().trim();
+
+                if (input.isEmpty()) break;
+
+                output = Integer.parseInt(input);
+
+                if (output <= 0) throw new NumberFormatException();
+                break;
+
+            } catch (NumberFormatException error) {
+                System.out.println(Utils.coloredExceptionMessage("%s%n",
+                        ReadProperties.getProperty("error.show.expect-integer")));
+            }
+        }
+
+        return output;
+    }
+
+    /**
      * Handles user input for a double value.
      *
      * @param question the prompt/question to display to the user.
@@ -135,6 +165,37 @@ public class HandleInput {
             try {
                 System.out.print(question);
                 output = Double.parseDouble(read.nextLine().trim());
+
+                if (output <= 0) throw new NumberFormatException();
+                break;
+
+            } catch (NumberFormatException error) {
+                System.out.println(Utils.coloredExceptionMessage("%s%n",
+                        ReadProperties.getProperty("error.show.expect-double")));
+            }
+        }
+
+        return output;
+    }
+
+    /**
+     * Handles user input for a non-empty double value.
+     *
+     * @param question the prompt/question to display to the user.
+     * @return the user input as a double.
+     * @throws NumberFormatException if the input is not a valid non-empty double.
+     */
+    public static double handleNonEmptyDouble(String question) {
+        double output = 0;
+
+        while (true) {
+            try {
+                System.out.print(question);
+                String input = read.nextLine().trim();
+
+                if (input.isEmpty()) break;
+
+                output = Double.parseDouble(input);
 
                 if (output <= 0) throw new NumberFormatException();
                 break;
