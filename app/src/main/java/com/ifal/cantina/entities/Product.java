@@ -59,6 +59,15 @@ public class Product {
         this.setDescription(description);
     }
 
+    @Overload
+    public Product(int id, String name, double unitPrice, int quantity, String description) {
+        this.setIdentifier(id);
+        this.name = name;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+        this.description = description;
+    }
+
     /**
      * Gets the identifier of the product.
      *
@@ -66,6 +75,11 @@ public class Product {
      */
     public int getIdentifier() {
         return this.identifier;
+    }
+
+    private void setIdentifier(int id) {
+        if (id > 0)
+            this.identifier = id;
     }
 
     /**
