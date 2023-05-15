@@ -26,7 +26,7 @@ public class ResultMessageFactory {
         Map<Class<? extends AView>, String> resultMessages = new HashMap<>() {
             {
                 put(View.class, "result.conclusion");
-                put(RegisterItemView.class, "result.insert");
+                put(ItemRegisterView.class, "result.insert");
                 put(ItemRemovalView.class, "result.delete");
             }
         };
