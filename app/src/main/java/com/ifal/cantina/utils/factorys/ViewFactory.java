@@ -4,6 +4,8 @@ import java.util.function.Supplier;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.ifal.cantina.controllers.summaryControllers.*;
+import com.ifal.cantina.views.summariesViews.*;
 import com.ifal.cantina.interfaces.AController;
 import com.ifal.cantina.interfaces.AView;
 import com.ifal.cantina.controllers.*;
@@ -28,6 +30,9 @@ public class ViewFactory {
                 put(ItemRegisterController.class, ItemRegisterView::new);
                 put(ItemChangeController.class, ItemChangeView::new);
                 put(ItemRemovalController.class, ItemRemovalView::new);
+                put(ItemSummaryController.class, ItemSummaryView::new);
+                put(ItemSummaryControllerSortedByDescription.class,
+                        ItemSummaryViewSortedByDescription::new);
             }
         };
 

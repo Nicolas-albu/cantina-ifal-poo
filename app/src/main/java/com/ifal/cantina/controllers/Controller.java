@@ -1,5 +1,6 @@
 package com.ifal.cantina.controllers;
 
+import com.ifal.cantina.utils.factorys.ControllerFactory;
 import com.ifal.cantina.exceptions.EntityException;
 import com.ifal.cantina.interfaces.AController;
 
@@ -21,19 +22,14 @@ public class Controller extends AController {
 
     @Override
     public void run() {
-        switch (this.getResultShowMenu()) {
-            case 9:
-                break;
-            case 1:
-                new ItemRegisterController().run();
-                break;
-            case 2:
-                new ItemChangeController().run();
-                break;
-            case 3:
-                new ItemRemovalController().run();
-                break;
-        }
+        int resultShowMenu = this.getResultShowMenu();
+        AController controller;
+
+//        while (resultShowMenu != 9) {
+//            resultShowMenu = this.getResultShowMenu();
+            controller = ControllerFactory.createController(resultShowMenu);
+            controller.run();
+//        }
 
         super.view.printResult();
         super.view.close();

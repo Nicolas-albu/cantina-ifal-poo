@@ -20,17 +20,17 @@ public class Product {
     @DBField(fieldName = "cod_prod")
     private int identifier;
 
-    @DBField(fieldName = "nom_prod")
-    private String name;
-
-    @DBField(fieldName = "val_preco_uni")
-    private double unitPrice;
-
     @DBField(fieldName = "qtd_prod")
     private int quantity;
 
+    @DBField(fieldName = "nom_prod")
+    private String name;
+
     @DBField(fieldName = "des_prod")
     private String description;
+
+    @DBField(fieldName = "val_preco_uni")
+    private double unitPrice;
 
     /**
      * Constructs a new instance of the Product class with the specified identifier.

@@ -50,6 +50,10 @@ public abstract class AView {
         System.out.println(Utils.coloredResultMessage(resultMessage));
     }
 
+    public void printQuery(String result) {
+        System.out.println(result);
+    }
+
     /**
      * Closes the associated resource.
      * In this case, it closes the Scanner object used for input reading.

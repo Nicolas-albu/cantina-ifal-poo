@@ -2,6 +2,8 @@ package com.ifal.cantina.utils;
 
 import com.ifal.cantina.annotations.Overload;
 
+import java.util.List;
+
 /**
  * The Utils class provides various utility methods for common operations.
  * It includes methods for coloring exception messages.
@@ -13,6 +15,7 @@ public class Utils {
     private static final String ANSI_RESET = "\u001B[0m";
     private static final String ANSI_RED = "\u001B[31m";
     private static final String ANSI_GREEN = "\u001B[32m";
+    private static StringBuilder queryColumnNameAndValue;
 
     /**
      * Returns a colored exception message.
@@ -60,5 +63,20 @@ public class Utils {
      */
     public static boolean containsOnlyInteger(String input) {
         return input.matches("\\d+");
+    }
+
+    public static void saveQueryFormat(String columnValue, List<String> columnNames) {
+        queryColumnNameAndValue = new StringBuilder();
+
+        for (String columnName : columnNames) {
+            if (!queryColumnNameAndValue.toString().equals("")) queryColumnNameAndValue.append(" | ");
+            if (columnValue.equals("")) columnValue = "NULL";
+
+            queryColumnNameAndValue.append(String.format("[%s] %s", columnName, columnValue));
+        }
+    }
+
+    public static String getFormattedQuery() {
+        return queryColumnNameAndValue.toString();
     }
 }

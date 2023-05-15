@@ -1,10 +1,15 @@
 package com.ifal.cantina.models;
 
+import com.ifal.cantina.annotations.Overload;
 import com.ifal.cantina.annotations.DBTable;
 import com.ifal.cantina.interfaces.AModel;
+import com.ifal.cantina.interfaces.AView;
+import com.ifal.cantina.utils.Utils;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,6 +28,7 @@ public class Model extends AModel {
         super();
     }
 
+    @Overload
     @Override
     public void commit() throws SQLException {
         try (PreparedStatement statement = super.connection.prepareStatement(this.statementSql)) {
@@ -30,12 +36,29 @@ public class Model extends AModel {
         }
     }
 
+    @Overload
+    @Override
+    public void commit(AView view) throws SQLException {
+        try (PreparedStatement query = super.connection.prepareStatement(super.statementSql);
+             ResultSet resultQuery = query.executeQuery()) {
+
+            while (resultQuery.next()) {
+                for (String columnName : super.columnNames) {
+                    String columnValue = resultQuery.getString(columnName);
+
+                    Utils.saveQueryFormat(columnValue, super.columnNames);
+                }
+                view.printQuery(Utils.getFormattedQuery());
+            }
+        }
+    }
+
     @Override
     public AModel insert(Object entity) throws IllegalAccessException {
-        DBTable DBTableEntity = entity.getClass().getAnnotation(DBTable.class);
+        DBTable dbTableEntity = entity.getClass().getAnnotation(DBTable.class);
 
-        if (DBTableEntity != null) {
-            String tableName = DBTableEntity.tableName();
+        if (dbTableEntity != null) {
+            String tableName = dbTableEntity.tableName();
             Map<String, String> entityData = super.extractDataFromEntity(entity);
 
             super.statementSql = super.buildSqlForInsert(tableName, entityData);
@@ -46,10 +69,10 @@ public class Model extends AModel {
 
     @Override
     public AModel delete(Object entity) throws IllegalAccessException {
-        DBTable DBTableEntity = entity.getClass().getAnnotation(DBTable.class);
+        DBTable dbTableEntity = entity.getClass().getAnnotation(DBTable.class);
 
-        if (DBTableEntity != null) {
-            String tableName = DBTableEntity.tableName();
+        if (dbTableEntity != null) {
+            String tableName = dbTableEntity.tableName();
             Map<String, String> entityId = super.extractIdFromEntity(entity);
 
             super.statementSql = super.buildSqlForDelete(tableName, entityId);
@@ -57,9 +80,25 @@ public class Model extends AModel {
 
         return this;
     }
+//
+//    @Override
+//    public AModel query(int id) {
+//        DBTable DBTableEntity = entity.getClass().getAnnotation(DBTable.class);
+//
+//        return this;
+//    }
 
     @Override
-    public AModel query(int id) {
+    public AModel query(Class<?> entityClass, String orderBy) {
+        DBTable dbTable = entityClass.getAnnotation(DBTable.class);
+
+        if (dbTable != null) {
+            String tableName = dbTable.tableName();
+            List<String> tableColumnNames = super.extractTableColumnNames(entityClass);
+
+            super.statementSql = super.buildSqlForQuery(tableName, tableColumnNames, orderBy);
+        }
+
         return this;
     }
 
