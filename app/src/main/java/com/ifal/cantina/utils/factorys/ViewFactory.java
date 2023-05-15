@@ -26,6 +26,7 @@ public class ViewFactory {
             {
                 put(Controller.class, View::new);
                 put(ItemRegisterController.class, ItemRegisterView::new);
+                put(ItemChangeController.class, ItemChangeView::new);
                 put(ItemRemovalController.class, ItemRemovalView::new);
             }
         };
