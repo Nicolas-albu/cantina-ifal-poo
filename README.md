@@ -18,13 +18,13 @@ Leve em consideração os seguintes tópicos:
 	- [ ] Guardar a informação dos itens do estoque da cantina: 
       - [x] nome do produto, 
       - [x] descrição do produto, 
-      - [ ] preço de compra do produto, 
+      - [ ] preço de compra do produto,
       - [x] preço unitário do produto
       de venda e quantidade comprada, quantidade vendida).
 	- [x] Não permitir que a quantidade de itens disponíveis seja inválida.
-	- [ ] Permitir que o administrador da cantina:
+	- [x] Permitir que o administrador da cantina:
 		- [x] cadastre itens no estoque.
-		- [ ] altere itens no estoque.
+		- [x] altere itens no estoque.
 		- [x] exclua itens no estoque.
 	- [ ] Dar baixa nos itens vendidos do estoque.
 	- [ ] Permitir resumo de itens:
