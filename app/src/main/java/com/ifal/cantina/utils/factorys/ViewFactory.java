@@ -25,7 +25,7 @@ public class ViewFactory {
         Map<Class<? extends AController>, Supplier<AView>> typeControllers = new HashMap<>() {
             {
                 put(Controller.class, View::new);
-                put(ItemRegisterController.class, RegisterItemView::new);
+                put(ItemRegisterController.class, ItemRegisterView::new);
                 put(ItemRemovalController.class, ItemRemovalView::new);
             }
         };
