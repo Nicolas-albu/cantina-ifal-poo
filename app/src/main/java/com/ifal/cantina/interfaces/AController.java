@@ -9,10 +9,10 @@ import com.ifal.cantina.utils.factorys.ViewFactory;
  *
  * @author Nicolas Albuquerque R.
  * @see AView
- * @see IModel
+ * @see AModel
  */
 public abstract class AController {
-    protected IModel model;
+    protected AModel model;
     protected AView view;
 
     /**
