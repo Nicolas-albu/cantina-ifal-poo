@@ -64,7 +64,19 @@ public class Model extends AModel {
     }
 
     @Override
-    public AModel update(Object entity) {
+    public AModel update(Object entity) throws IllegalAccessException {
+        DBTable DBTableEntity = entity.getClass().getAnnotation(DBTable.class);
+
+        if (DBTableEntity != null) {
+            String tableName = DBTableEntity.tableName();
+            Map<String, String> entityId = super.extractIdFromEntity(entity);
+            Map<String, String> entityData = super.extractDataFromEntityWithoutId(entity);
+
+            super.statementSql = super.buildSqlForUpdate(tableName, entityId, entityData);
+        }
+
+        System.out.println(super.statementSql);
+
         return this;
     }
 }
