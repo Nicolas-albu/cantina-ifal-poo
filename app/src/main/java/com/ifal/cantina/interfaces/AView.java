@@ -38,7 +38,7 @@ public abstract class AView {
      * @param exception the exception to be printed.
      */
     public void printException(Exception exception) {
-        System.out.println(Utils.coloredResultMessage(exception.getMessage()));
+        System.out.println(Utils.coloredExceptionMessage(exception.getMessage()));
     }
 
     /**
