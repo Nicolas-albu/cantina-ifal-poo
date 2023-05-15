@@ -1,6 +1,6 @@
 package com.ifal.cantina.utils.factorys;
 
-import com.ifal.cantina.interfaces.IModel;
+import com.ifal.cantina.interfaces.AModel;
 import com.ifal.cantina.models.Model;
 
 /**
@@ -13,7 +13,7 @@ public class ModelFactory {
     /**
      * @return the instance of model.
      */
-    public static IModel createModel() {
+    public static AModel createModel() {
         return new Model();
     }
 }
