@@ -27,6 +27,9 @@ public class Controller extends AController {
             case 1:
                 new ItemRegisterController().run();
                 break;
+            case 2:
+                new ItemChangeController().run();
+                break;
             case 3:
                 new ItemRemovalController().run();
                 break;
@@ -46,6 +49,7 @@ public class Controller extends AController {
 
         try {
             resultShowMenu = (Integer) super.view.show();
+
         } catch (EntityException error) {
             super.view.printException(error);
         }
