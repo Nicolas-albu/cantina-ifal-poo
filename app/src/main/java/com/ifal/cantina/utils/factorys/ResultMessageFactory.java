@@ -27,6 +27,7 @@ public class ResultMessageFactory {
             {
                 put(View.class, "result.conclusion");
                 put(ItemRegisterView.class, "result.insert");
+                put(ItemChangeView.class, "result.update");
                 put(ItemRemovalView.class, "result.delete");
             }
         };
