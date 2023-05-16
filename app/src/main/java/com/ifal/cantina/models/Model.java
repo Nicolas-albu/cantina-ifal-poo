@@ -4,11 +4,13 @@ import com.ifal.cantina.annotations.Overload;
 import com.ifal.cantina.annotations.DBTable;
 import com.ifal.cantina.interfaces.AModel;
 import com.ifal.cantina.interfaces.AView;
+import com.ifal.cantina.utils.QueryTable;
 import com.ifal.cantina.utils.Utils;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -42,14 +44,19 @@ public class Model extends AModel {
         try (PreparedStatement query = super.connection.prepareStatement(super.statementSql);
              ResultSet resultQuery = query.executeQuery()) {
 
-            while (resultQuery.next()) {
-                for (String columnName : super.columnNames) {
-                    String columnValue = resultQuery.getString(columnName);
+            QueryTable table = new QueryTable(columnNames);
+            List<String> columnValues = new ArrayList<>();
 
-                    Utils.saveQueryFormat(columnValue, super.columnNames);
+            while (resultQuery.next()) {
+                columnValues.clear();
+
+                for (String columnName : super.columnNames) {
+                    columnValues.add(resultQuery.getString(columnName));
                 }
-                view.printQuery(Utils.getFormattedQuery());
+
+                table.saveQueryFormat(columnValues);
             }
+            view.printQuery(table.toString());
         }
     }
 

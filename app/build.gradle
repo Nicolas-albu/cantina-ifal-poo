@@ -19,6 +19,12 @@ repositories {
 }
 
 dependencies {
+    implementation 'de.vandermeer:asciitable:0.3.2'
+
+//    implementation 'commons-cli:commons-cli:1.5.0'
+
+    // Library for representing tabular data in text files
+
     // Use JUnit test framework.
     testImplementation 'junit:junit:4.13.2'
 

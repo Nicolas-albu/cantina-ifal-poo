@@ -239,7 +239,8 @@ public abstract class AModel {
             queryStatement.append(columnName);
         }
 
-        return String.format("SELECT %s FROM %s ORDER BY %s;", queryStatement, tableName, orderBy);
+        return String.format("SELECT %s FROM %s ORDER BY %s DESC;", queryStatement, tableName,
+                orderBy);
     }
 
     /**
