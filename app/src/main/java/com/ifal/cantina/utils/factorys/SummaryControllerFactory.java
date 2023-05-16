@@ -11,6 +11,7 @@ public class SummaryControllerFactory {
         Map<Integer, Supplier<AController>> typeControllers = new HashMap<>() {
             {
                 put(1, ItemSummaryControllerSortedByDescription::new);
+                put(2, ItemSummaryControllerSortedByQuantity::new);
             }
         };
 

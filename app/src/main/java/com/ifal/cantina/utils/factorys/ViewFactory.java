@@ -31,8 +31,9 @@ public class ViewFactory {
                 put(ItemChangeController.class, ItemChangeView::new);
                 put(ItemRemovalController.class, ItemRemovalView::new);
                 put(ItemSummaryController.class, ItemSummaryView::new);
-                put(ItemSummaryControllerSortedByDescription.class,
-                        ItemSummaryViewSortedByDescription::new);
+                put(ItemSummaryControllerSortedByDescription.class, ItemSummaryViewSortedByDescription::new);
+                put(ItemSummaryControllerSortedByQuantity.class,
+                        ItemSummaryViewSortedByQuantity::new);
             }
         };
 
