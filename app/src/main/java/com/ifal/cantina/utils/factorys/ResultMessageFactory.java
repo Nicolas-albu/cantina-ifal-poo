@@ -31,7 +31,6 @@ public class ResultMessageFactory {
                 put(ItemChangeView.class, "result.update");
                 put(ItemRemovalView.class, "result.delete");
                 put(ItemSummaryView.class, "result.query");
-                put(ItemSummaryViewSortedByDescription.class, "result.query");
             }
         };
 

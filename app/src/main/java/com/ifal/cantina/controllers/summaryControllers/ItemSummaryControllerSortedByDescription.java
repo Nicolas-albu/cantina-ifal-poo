@@ -20,7 +20,6 @@ public class ItemSummaryControllerSortedByDescription extends AController {
             super.view.printException(error);
         }
 
-        super.view.printResult();
         super.view.close();
     }
 }
