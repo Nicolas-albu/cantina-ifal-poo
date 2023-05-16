@@ -27,7 +27,7 @@ public class ItemChangeController extends AController {
 
     @Override
     public void run() {
-        Product product = this.getProduct();
+        Product product = (Product) this.getResultShowMenu();
 
         try {
             super.model.update(product).commit();
@@ -46,7 +46,8 @@ public class ItemChangeController extends AController {
      *
      * @return the modified Product object.
      */
-    private Product getProduct() {
+    @Override
+    protected Object getResultShowMenu() {
         Product product;
 
         while (true) {

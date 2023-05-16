@@ -8,15 +8,16 @@ import java.util.Map;
 
 public class ControllerFactory {
     public static AController createController(int optionMenu) {
-        Map<Integer, Supplier<AController>> typeControllers = new HashMap<>() {
+        Map<Integer, Supplier<AController>> options = new HashMap<>() {
             {
                 put(1, ItemRegisterController::new);
                 put(2, ItemChangeController::new);
                 put(3, ItemRemovalController::new);
+                put(4, InventoryProductQuantityController::new);
                 put(5, ItemSummaryController::new);
             }
         };
 
-        return typeControllers.getOrDefault(optionMenu, () -> null).get();
+        return options.getOrDefault(optionMenu, () -> null).get();
     }
 }

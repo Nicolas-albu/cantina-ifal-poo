@@ -1,4 +1,4 @@
-package com.ifal.cantina.controllers.summaryControllers;
+package com.ifal.cantina.controllers.subControllers.summaryControllers;
 
 import com.ifal.cantina.interfaces.AController;
 import com.ifal.cantina.entities.Product;

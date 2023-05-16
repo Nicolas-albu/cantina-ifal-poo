@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `db_cantina`.`TBL_FUNCIONARIO` (
   `cod_func` INT NOT NULL AUTO_INCREMENT,
   `txt_email` VARCHAR(200) NOT NULL,
   `pwd_func` VARCHAR(12) NOT NULL,
-  `nom_func` VARCHAR(100) NULL,
+  `nom_func` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`cod_func`),
   UNIQUE INDEX `txt_email_UNIQUE` (`txt_email` ASC) VISIBLE)
 ENGINE = InnoDB;
@@ -102,3 +102,12 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+-- -----------------------------------------------------
+-- Insert Data in `db_cantina`.`TBL_FUNCIONARIO`
+-- -----------------------------------------------------
+INSERT INTO `db_cantina`.`TBL_FUNCIONARIO`
+    (`txt_email`, `pwd_func`, `nom_prod`)
+VALUES
+    ("ricardo@ifal.edu.br", "poo", "Ricardo Rubens");

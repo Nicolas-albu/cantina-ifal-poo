@@ -1,6 +1,7 @@
 package com.ifal.cantina.interfaces;
 
 import com.ifal.cantina.utils.factorys.ModelFactory;
+import com.ifal.cantina.exceptions.EntityException;
 import com.ifal.cantina.utils.factorys.ViewFactory;
 
 /**
@@ -24,8 +25,34 @@ public abstract class AController {
         this.view = ViewFactory.createView(this);
     }
 
+    public AController(AModel model, AView view) {
+        this.model = model;
+        this.view = view;
+    }
+
     /**
      * Runs the controller, executing the desired logic and interaction.
      */
     public abstract void run();
+
+    /**
+     * Returns the obtained object by invoking the view's show() method.
+     *
+     * @return The object obtained from the view or null in case of an exception.
+     */
+    protected Object getResultShowMenu() {
+        try {
+            return this.view.show();
+            
+        } catch (EntityException error) {
+            this.view.printException(error);
+        }
+
+        return null;
+    }
+
+
+    public void setModel(AModel model) {
+        this.model = model;
+    }
 }

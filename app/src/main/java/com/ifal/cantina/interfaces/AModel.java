@@ -8,10 +8,7 @@ import com.ifal.cantina.annotations.Id;
 import java.lang.reflect.Field;
 import java.sql.SQLException;
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * The abstract class representing a model in the application.
@@ -43,6 +40,8 @@ public abstract class AModel {
     @Overload
     public abstract void commit(AView view) throws SQLException;
 
+    public abstract Object commitWithReturn(String columnName) throws SQLException;
+
     /**
      * Inserts an entity into the data storage.
      *
@@ -57,23 +56,30 @@ public abstract class AModel {
      */
     public abstract AModel delete(Object entity) throws IllegalAccessException;
 
-//    /**
-//     * Queries data from the storage based on an ID.
-//     *
-//     * @param id the ID to query.
-//     */
-//    @Overload
-//    public abstract AModel query(int id);
+    /**
+     * Queries data from the storage based on an ID.
+     *
+     * @param id the ID to query.
+     */
+    @Overload
+    public abstract AModel query(int id, Class<?> entityClass, String columnName);
 
     @Overload
     public abstract AModel query(Class<?> entityClass, String orderBy);
+
+    @Overload
+    public abstract AModel query(Class<?> entityClass, String limitedField, int limit);
 
     /**
      * Updates an object in the data storage.
      *
      * @param entity the entity to be updated.
      */
+    @Overload
     public abstract AModel update(Object entity) throws IllegalAccessException;
+
+    @Overload
+    public abstract AModel update(Object entity, String columnName) throws IllegalAccessException;
 
     /**
      * Extracts data from an entity object and returns it as a map of field names and values.
@@ -111,23 +117,35 @@ public abstract class AModel {
      */
     protected Map<String, String> extractIdFromEntity(Object entity) throws IllegalAccessException {
         Field[] entityFields = entity.getClass().getDeclaredFields();
+        Field idField = entityFields[0];
 
         return new HashMap<>() {
             {
-                for (Field field : entityFields) {
-                    field.setAccessible(true);
-                    Id tableId = field.getAnnotation(Id.class);
-                    DBField tableField = field.getAnnotation(DBField.class);
+                idField.setAccessible(true);
+                Id tableId = idField.getAnnotation(Id.class);
+                DBField tableField = idField.getAnnotation(DBField.class);
 
-                    if (tableId != null) {
-                        String idName = tableId
-                                .idName().equals("") ? tableField.fieldName() : tableId.idName();
+                if (tableId != null) {
+                    String idName = tableId.idName().equals("") ? tableField.fieldName() : tableId.idName();
 
-                        put(idName, field.get(entity).toString());
-                    }
+                    put(idName, idField.get(entity).toString());
                 }
             }
         };
+    }
+
+    protected String extractIdNameFromEntityClass(Class<?> entityClass) {
+        Field[] entityFields = entityClass.getDeclaredFields();
+        Field field = entityFields[0];
+
+        field.setAccessible(true);
+        Id tableId = field.getAnnotation(Id.class);
+        DBField tableField = field.getAnnotation(DBField.class);
+
+        if (tableId != null)
+            return tableId.idName().equals("") ? tableField.fieldName() : tableId.idName();
+
+        return null;
     }
 
     /**
@@ -157,6 +175,22 @@ public abstract class AModel {
                 }
             }
         };
+    }
+
+    protected Map<String, String> extractDataFromAnEntityColumn(Object entity, String columnName)
+            throws IllegalAccessException {
+        Field[] entityFields = entity.getClass().getDeclaredFields();
+
+        for (Field field : entityFields) {
+            field.setAccessible(true); // Pass the private attributes as visible.
+            DBField tableField = field.getAnnotation(DBField.class);
+
+            if (tableField != null && tableField.fieldName().equals(columnName)) {
+                return Collections.singletonMap(columnName, field.get(entity).toString());
+            }
+        }
+
+        return null;
     }
 
     protected List<String> extractTableColumnNames(Class<?> entityClass) {
@@ -229,8 +263,8 @@ public abstract class AModel {
                 entityIdNameStatement, idValueStatement);
     }
 
-    protected String buildSqlForQuery(String tableName, List<String> tableColumnNames,
-                                      String orderBy) {
+    @Overload
+    protected String buildSqlForQuery(String tableName, List<String> tableColumnNames, String orderBy) {
         StringBuilder queryStatement = new StringBuilder();
 
         for (String columnName : tableColumnNames) {
@@ -241,6 +275,26 @@ public abstract class AModel {
 
         return String.format("SELECT %s FROM %s ORDER BY %s DESC;", queryStatement, tableName,
                 orderBy);
+    }
+
+    @Overload
+    protected String buildSqlForQuery(String tableName, List<String> tableColumnNames, String limitedField, int limit) {
+        StringBuilder queryStatement = new StringBuilder();
+
+        for (String columnName : tableColumnNames) {
+            if (!queryStatement.toString().equals("")) queryStatement.append(", ");
+
+            queryStatement.append(columnName);
+        }
+
+        return String.format("SELECT %s FROM %s WHERE %s <= %s;", queryStatement, tableName,
+                limitedField, limit);
+    }
+
+    @Overload
+    protected String buildSqlForQuery(int id, String idName, String tableName, String columnName) {
+        return String.format("SELECT %s FROM %s WHERE %s = '%s';",
+                columnName, tableName, idName, id);
     }
 
     /**

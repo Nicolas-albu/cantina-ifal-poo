@@ -1,7 +1,7 @@
 package com.ifal.cantina.utils.factorys;
 
 import com.ifal.cantina.interfaces.AModel;
-import com.ifal.cantina.models.Model;
+import com.ifal.cantina.models.ProductModel;
 
 /**
  * Pattern Factory to the models.
@@ -14,6 +14,6 @@ public class ModelFactory {
      * @return the instance of model.
      */
     public static AModel createModel() {
-        return new Model();
+        return new ProductModel();
     }
 }

@@ -26,7 +26,7 @@ public class ItemRemovalController extends AController {
 
     @Override
     public void run() {
-        Product product = this.getProduct();
+        Product product = (Product) super.getResultShowMenu();
 
         try {
             super.model.delete(product).commit();
@@ -37,23 +37,5 @@ public class ItemRemovalController extends AController {
 
         super.view.printResult();
         super.view.close();
-    }
-
-    /**
-     * Retrieves the product from the view.
-     *
-     * @return The product selected for removal.
-     */
-    private Product getProduct() {
-        Product product = null;
-
-        try {
-            product = (Product) super.view.show();
-
-        } catch (EntityException error) {
-            this.view.printException(error);
-        }
-
-        return product;
     }
 }

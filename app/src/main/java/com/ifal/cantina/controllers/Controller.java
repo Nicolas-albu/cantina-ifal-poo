@@ -1,7 +1,6 @@
 package com.ifal.cantina.controllers;
 
 import com.ifal.cantina.utils.factorys.ControllerFactory;
-import com.ifal.cantina.exceptions.EntityException;
 import com.ifal.cantina.interfaces.AController;
 
 /**
@@ -22,34 +21,15 @@ public class Controller extends AController {
 
     @Override
     public void run() {
-        int resultShowMenu = this.getResultShowMenu();
+        int resultShowMenu = (Integer) super.getResultShowMenu();
         AController controller;
 
-//        while (resultShowMenu != 9) {
-//            resultShowMenu = this.getResultShowMenu();
+        if (resultShowMenu != 9) {
             controller = ControllerFactory.createController(resultShowMenu);
             controller.run();
-//        }
+        }
 
         super.view.printResult();
         super.view.close();
-    }
-
-    /**
-     * Retrieves the user's choice from the View component.
-     *
-     * @return The user's choice as an integer.
-     */
-    private int getResultShowMenu() {
-        int resultShowMenu = 9;
-
-        try {
-            resultShowMenu = (Integer) super.view.show();
-
-        } catch (EntityException error) {
-            super.view.printException(error);
-        }
-
-        return resultShowMenu;
     }
 }

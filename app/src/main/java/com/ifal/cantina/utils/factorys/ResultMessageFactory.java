@@ -3,7 +3,6 @@ package com.ifal.cantina.utils.factorys;
 import com.ifal.cantina.utils.ReadProperties;
 import com.ifal.cantina.interfaces.AView;
 import com.ifal.cantina.views.*;
-import com.ifal.cantina.views.summariesViews.ItemSummaryViewSortedByDescription;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,9 +27,10 @@ public class ResultMessageFactory {
             {
                 put(View.class, "result.conclusion");
                 put(ItemRegisterView.class, "result.insert");
-                put(ItemChangeView.class, "result.update");
+                put(ItemChangeView.class, "result.change");
                 put(ItemRemovalView.class, "result.delete");
                 put(ItemSummaryView.class, "result.query");
+                put(InventoryProductQuantityView.class, "result.update");
             }
         };
 

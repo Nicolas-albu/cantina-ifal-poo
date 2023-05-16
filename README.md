@@ -26,12 +26,12 @@ Leve em consideração os seguintes tópicos:
 		- [x] cadastre itens no estoque.
 		- [x] altere itens no estoque.
 		- [x] exclua itens no estoque.
-	- [ ] Dar baixa nos itens vendidos do estoque.
-	- [ ] Permitir resumo de itens:
-		- [ ] Mostrar um resumo dos itens e
-		- [ ] Suas quantidades disponíveis ordenado pela descrição 
-		- [ ] ou quantidade disponível, a critério do usuário.
-		- [ ] Mostrar resumo dos itens com quantidade baixa no estoque (abaixo de 50 itens).
+	- [x] Dar baixa nos itens vendidos do estoque.
+	- [x] Permitir resumo de itens:
+      - [x] Suas quantidades disponíveis ordenado pela: 
+        	- [x] descrição ou 
+        	- [x] quantidade disponível, a critério do usuário.
+        - [x] Mostrar resumo dos itens com quantidade baixa no estoque (abaixo de 50 itens).
 	- [ ] Permitir resumo de lucros:
 		- [ ] Mostrar resumo do lucro/prejuízo de acordo com a baixa dos produtos no estoque.
 		- [ ] Mostrar o total vendido por dia.

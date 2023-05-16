@@ -42,6 +42,12 @@ public class Product {
         this.identifier = id;
     }
 
+    @Overload
+    public Product(int id, int quantity) throws EntityException {
+        this.identifier = id;
+        this.setQuantity(quantity);
+    }
+
     /**
      * Constructs a new instance of the Product class.
      *
