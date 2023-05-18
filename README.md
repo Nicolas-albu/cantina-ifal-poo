@@ -4,37 +4,61 @@
 ## **Integrantes**
 - Nícolas Albuquerque Ramos.
 
+## **Perguntas**
+**Conseguiu ou não realizar tudo o que foi proposto? Se não conseguiu, detalhe o que faltou.**
+
+Não consegui fazer tudo no prazo. O que faltou:
+- desenvolver soluções para as operações com funcionários (adicionar e remover), 
+- não permitir o cadastro de preços menor que o preço de venda,
+- guardar o preço de compra do produto na tabela TBL_ITENS,
+- guardar o preço da venda dos itens na tabela TBL_VENDA,
+- guardar a quantidade comprada do produto na tabela TBL_ITENS,
+- guardar a quantidade vendida dos itens na tabela TBL_VENDA,
+- resumo de lucro/prejuízo.
+
+**Quais os possíveis problemas que se identifica no código?**
+
+Além da não implementação dos requisitos citados na resposta da 1° pergunta, acredito que apenas que o menu não é mostrado novamente quando terminado uma operação.
+
+**Sentiu dificuldade para desenvolver o projeto? Quais?**
+
+Sim,
+- aplicar completamente os príncipios de projetos, principalmente o princípio "fechado para modificação e aberto para extensão", 
+- aplicar a arquitetura MVC.
+
 ## :warning: **Observação**
 Leve em consideração os seguintes tópicos:
 - Esse projeto ainda está em desenvolvimento.
 - Esse projeto também não tem implicação real, apenas para nota de curso.
 
 ## :pushpin: **Tasks**
-- [x] Criar todas as tabelas do Modelo relacional no MYSQL;
+- [x] Criar todas as tabelas do Modelo relacional no MYSQL.
 - [ ] O programa deve:
 	- [x] Fornecer um menu de opções.
 	- [ ] Operacoes com funcionarios:
-		- [ ] Adicionar funcionario
-		- [ ] Remover funcionario
+		- [ ] Adicionar funcionario.
+		- [ ] Remover funcionario.
 	- [ ] Não permitir que sejam cadastrados itens com preços inválidos, inclusive preço de venda menor que o preço de
 	compra.
 	- [ ] Guardar a informação dos itens do estoque da cantina: 
-      - [x] nome do produto, 
-      - [x] descrição do produto, 
-      - [ ] preço de compra do produto,
-      - [x] preço unitário do produto
-      de venda e quantidade comprada, quantidade vendida).
-	- [x] Não permitir que a quantidade de itens disponíveis seja inválida.
-	- [x] Permitir que o administrador da cantina:
-		- [x] cadastre itens no estoque.
-		- [x] altere itens no estoque.
-		- [x] exclua itens no estoque.
-	- [x] Dar baixa nos itens vendidos do estoque.
-	- [x] Permitir resumo de itens:
-      - [x] Suas quantidades disponíveis ordenado pela: 
-        	- [x] descrição ou 
-        	- [x] quantidade disponível, a critério do usuário.
-        - [x] Mostrar resumo dos itens com quantidade baixa no estoque (abaixo de 50 itens).
+      - [x] nome do produto.
+      - [x] descrição do produto.
+      - [ ] preço de compra do produto.
+      - [x] preço unitário do produto.
+      - [ ] preço da venda.
+      - [ ] quantidade comprada.
+      - [ ] quantidade vendida.
+      - [x] Não permitir que a quantidade de itens disponíveis seja inválida.
+      - [x] Permitir que o administrador da cantina:
+      	- [x] cadastre itens no estoque.
+	- [x] altere itens no estoque.
+	- [x] exclua itens no estoque.
+      - [x] * Dar baixa nos itens vendidos do estoque.  **(refazer para retirar quantidade de produto na TBL_PRODUTO, inserir em TBL_ITENS e TBL_VENDA)**
+      - [x] Permitir resumo de itens:
+      	- [x] Suas quantidades disponíveis ordenado pela: 
+      	  - [x] descrição, ou
+      	  - [x] quantidade disponível, a critério do usuário.
+        - [x] * Mostrar resumo dos itens com quantidade baixa no estoque (abaixo de 50 itens). **(refazer para mostrar o resumo dos itens na tabela TBL_ITENS, e não para TBL_PRODUTO)**
 	- [ ] Permitir resumo de lucros:
 		- [ ] Mostrar resumo do lucro/prejuízo de acordo com a baixa dos produtos no estoque.
 		- [ ] Mostrar o total vendido por dia.
