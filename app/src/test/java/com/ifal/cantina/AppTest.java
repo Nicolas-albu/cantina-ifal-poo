@@ -7,6 +7,8 @@ package com.ifal.cantina;
 
 import org.junit.Test;
 
+import java.util.Map;
+
 public class AppTest {
     @Test public void appHasAGreeting() {
         App classUnderTest = new App();

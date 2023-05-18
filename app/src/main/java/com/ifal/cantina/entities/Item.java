@@ -23,10 +23,10 @@ public class Item {
 
     public Item(int idProduct, int idSale, double discountPercentage, int quantityOfItens, double purchasePrice) {
         this.idProduct = idProduct;
-        this.idSale = idSale;
-        this.discountPercentage = discountPercentage;
-        this.quantityOfItens = quantityOfItens;
-        this.purchasePrice = purchasePrice;
+        this.setIdSale(idSale);
+        this.setDiscountPercentage(discountPercentage);
+        this.setQuantityOfItens(quantityOfItens);
+        this.setPurchasePrice(purchasePrice);
     }
 
     public int getIdProduct() {

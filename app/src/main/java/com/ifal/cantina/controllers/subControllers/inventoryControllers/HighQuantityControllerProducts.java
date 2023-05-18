@@ -8,8 +8,8 @@ import java.sql.SQLException;
 
 public class HighQuantityControllerProducts extends AController {
 
-    public HighQuantityControllerProducts(AModel model, AView view) {
-        super(model, view);
+    public HighQuantityControllerProducts() {
+        super();
     }
 
     @Override

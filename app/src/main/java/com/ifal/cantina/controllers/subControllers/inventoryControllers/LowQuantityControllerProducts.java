@@ -10,13 +10,13 @@ import java.sql.SQLException;
 
 public class LowQuantityControllerProducts extends AController {
 
-    private AModel itemModel;
-    private AModel saleModel;
+    private final AModel itemModel;
+    private final AModel saleModel;
 
     public LowQuantityControllerProducts() {
         super();
-        this.itemModel = ModelFactory.createModel();
-        this.saleModel = ModelFactory.createModel();
+        this.itemModel = ModelFactory.createModel(this);
+        this.saleModel = ModelFactory.createModel(this);
     }
 
     @Override
@@ -37,9 +37,15 @@ public class LowQuantityControllerProducts extends AController {
                     throw new EntityException(ReadProperties
                             .getProperty("error.entity.cannot-quantity-less-current-quantity"));
 
+                int quantityOnTableItem = productWithLowQuantity.getQuantity();
+
                 productWithLowQuantity.setQuantity(newQuantity);
 
                 super.model.update(productWithLowQuantity, "qtd_prod").commit();
+
+//                this.saleModel.insert()
+
+//                this.itemModel.update()
                 break;
 
             } catch (IllegalAccessException | SQLException | EntityException error) {

@@ -6,19 +6,17 @@ import com.ifal.cantina.interfaces.*;
 import java.util.function.BiFunction;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
 public class InventoryControllerFactory {
     public static AController createInventoryController(int choice, AModel model, AView view) {
-        Map<Integer, BiFunction<AModel, AView, AController>> options = new HashMap<>() {
+        Map<Integer, Supplier<AController>> options = new HashMap<>() {
             {
                 put(1, LowQuantityControllerProducts::new);
                 put(2, HighQuantityControllerProducts::new);
             }
         };
 
-        BiFunction<AModel, AView, AController> controllerFactory = options.getOrDefault(choice,
-                (models, views) -> null);
-
-        return controllerFactory.apply(model, view);
+        return options.getOrDefault(choice, () -> null).get();
     }
 }
