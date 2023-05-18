@@ -26,10 +26,16 @@ Sim,
 - aplicar completamente os príncipios de projetos, principalmente o princípio "fechado para modificação e aberto para extensão", 
 - aplicar a arquitetura MVC.
 
+## **Configurações**
+- Foi utilizado o Gradle para automação de compilação e gerenciamento de dependência.
+- O script do banco de dados (MySQL) se encontra [na pasta docs](docs/script_database.sql).
+- A porta, nome do usuário e senha do banco estão no [arquivo config.properties em resources](app/src/main/resources/config.properties).
+
 ## :warning: **Observação**
 Leve em consideração os seguintes tópicos:
 - Esse projeto ainda está em desenvolvimento.
 - Esse projeto também não tem implicação real, apenas para nota de curso.
+- O script do banco de dados foi construido no MySQL Workbench.
 
 ## :pushpin: **Tasks**
 - [x] Criar todas as tabelas do Modelo relacional no MYSQL.
